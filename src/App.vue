@@ -11,6 +11,7 @@
   <main>
     <NavBar/>
     <Hero/>
+    <div class="h-dvh bg-black"></div>
   </main>
 </template>
 
