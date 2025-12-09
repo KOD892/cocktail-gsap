@@ -1,14 +1,13 @@
 <script setup>
 import gsap from 'gsap';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onBeforeUnmount, ref } from 'vue';
 import { useMediaQuery } from '@/composables/useMediaQuery';
 import { SplitText } from 'gsap/all';
 
 
-const containerRef = ref(null)
 let ctx;
 const videoRef = ref(null)
-const isMobile = useMediaQuery('(max-width: 450px)')
+const isMobile = useMediaQuery('{max-width: 450px}')
 console.log(isMobile.value)
 onMounted(()=>{
   
@@ -22,6 +21,7 @@ onMounted(()=>{
         duration:1.8,
         ease: 'expo.out',
         stagger:0.06,
+        autoAlpha:1
       })
       gsap.from(paraSplit.lines,{
         opacity:0,
@@ -50,7 +50,7 @@ onMounted(()=>{
         // Now it's safe to create the timeline that scrubs the video.
         gsap.timeline({
           scrollTrigger: {
-              trigger: 'video',
+              trigger: videoRef.value,
               start: startValue,
               end: endValue,
               scrub: true,
@@ -58,13 +58,13 @@ onMounted(()=>{
           }
         }).to(videoRef.value, { currentTime: videoRef.value.duration , pin: true });
       };
-    }, containerRef.value)
+    })
      
 
 }).catch((err)=> console.log(err))
 })
-onUnmounted(()=>{
-    ctx.revert()
+onBeforeUnmount(()=>{
+    ctx?.revert()
 })
 
 </script>
