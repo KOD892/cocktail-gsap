@@ -6,6 +6,7 @@
   import Cocktails from './components/Cocktails.vue';
   import About from './components/About.vue';
   import Art from './components/Art.vue';
+  import Menu from './components/Menu.vue';
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -18,6 +19,7 @@
     <Cocktails/>
     <About/>
     <Art />
+    <Menu/>
 
   </main>
 </template>

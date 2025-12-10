@@ -1,6 +1,6 @@
 <script setup>
 import gsap from 'gsap';
-import { onMounted, onBeforeUnmount, ref } from 'vue';
+import { onMounted, onBeforeUnmount, ref, nextTick } from 'vue';
 import { useMediaQuery } from '@/composables/useMediaQuery';
 import { SplitText } from 'gsap/all';
 
@@ -12,7 +12,7 @@ console.log(isMobile.value)
 onMounted(()=>{
   
   document.fonts.ready.then(()=>{
-     ctx = gsap.context(()=>{
+     ctx = gsap.context(async()=>{
       const heroSplit = new SplitText('.title', {type: 'chars'})
       const paraSplit = new SplitText('.subtitle', {type: 'lines'})
      heroSplit.chars.forEach((c)=>c.classList.add('text-gradient'))
@@ -44,6 +44,7 @@ onMounted(()=>{
 
       const startValue = isMobile.value ? 'top 50%' : 'center 60%';
       const endValue = isMobile.value ? '120% top' : 'bottom top';
+      await nextTick();
       
       videoRef.value.onloadedmetadata = () => {
         // Once the video metadata is loaded, we know the duration.
