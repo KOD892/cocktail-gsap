@@ -1,13 +1,13 @@
 <script setup>
 import gsap from 'gsap';
 import { onMounted, onBeforeUnmount, ref, nextTick } from 'vue';
-import { useMediaQuery } from '@/composables/useMediaQuery';
+import { useMediaQuery } from '@vueuse/core'
 import { SplitText } from 'gsap/all';
 
 
 let ctx;
 const videoRef = ref(null)
-const isMobile = useMediaQuery('{max-width: 450px}')
+const isMobile = useMediaQuery('(max-width: 450px)')
 console.log(isMobile.value)
 onMounted(()=>{
   

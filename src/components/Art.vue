@@ -1,10 +1,10 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { featureLists, goodLists } from '../../data';
-import { useMediaQuery } from '@/composables/useMediaQuery';
+import { useMediaQuery } from '@vueuse/core';
 import gsap from 'gsap';
 
-const isMobile = useMediaQuery('{max-width: 767px}')
+const isMobile = useMediaQuery('(max-width: 450px)')
 const start = isMobile ? 'top 20%' : 'top top'; 
 let ctx;
 onMounted(()=>{
