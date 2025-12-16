@@ -109,7 +109,7 @@ onBeforeUnmount(()=>{
 
     </section>
     <div class="video absolute inset-0">
-        <video ref="videoRef" src="/videos/output-mobile.mp4" looppreload="auto" muted playsinline webkit-playsinline />
+        <video ref="videoRef" src="/videos/output.mp4" looppreload="auto" muted playsinline webkit-playsinline />
     </div>
 </div>
 </template>
