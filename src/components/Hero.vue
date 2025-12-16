@@ -8,6 +8,10 @@ import { SplitText } from 'gsap/all';
 let ctx;
 const videoRef = ref(null)
 const isMobile = useMediaQuery('(max-width: 450px)')
+const videoSrc = ref(null)
+
+videoSrc.value = isMobile.value ? "/videos/output-mobile.mp4" : "/videos/output.mp4";
+
 console.log(isMobile.value)
 onMounted(()=>{
   
@@ -40,10 +44,10 @@ onMounted(()=>{
         }
       }).to('.right-leaf',{y:200},0)
       .to('.left-leaf',{y:-200},0)
-
+       
 
       const startValue = isMobile.value ? 'top 50%' : 'center 60%';
-      const endValue = isMobile.value ? '120% top' : 'bottom top';
+      const endValue = isMobile.value ? '150% top' : 'bottom top';
       await nextTick();
       
       videoRef.value.onloadedmetadata = () => {
@@ -58,6 +62,9 @@ onMounted(()=>{
               pin: true,
           }
         }).to(videoRef.value, { currentTime: videoRef.value.duration , pin: true });
+        // videoRef.value.addEventListener('loadeddata', () => {
+        //     ScrollTrigger.refresh()
+        //     })
       };
     })
      
@@ -102,7 +109,10 @@ onBeforeUnmount(()=>{
 
     </section>
     <div class="video absolute inset-0">
-        <video ref="videoRef" src="/videos/output.mp4" preload="auto" muted playsinline />
+        <video ref="videoRef" src="/videos/output-mobile.mp4" looppreload="auto" muted playsinline webkit-playsinline />
     </div>
 </div>
 </template>
+<style>
+
+</style>
